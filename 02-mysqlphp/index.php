@@ -53,7 +53,7 @@ $etudiants = $req->fetchAll();
                 <td><?= htmlspecialchars($etudiant['prenom']) ?></td>
                 <td><?= htmlspecialchars($etudiant['email']) ?></td>
                 <td>
-                    <a href="update.php?id=<?= $etudiant['id'] ?>">Edit</a>
+                    <a href="update.php?id=<?= $etudiant['id'] ?>" name="modifier">Edit</a>
                     <a href="delete.php?id=<?= $etudiant['id'] ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?');">Delete</a>
                 </td>
             </tr>   
