@@ -25,7 +25,7 @@ $etudiants = $req->fetchAll();
 </head>
 <body>
     <h1>Liste des étudiants</h1>
-
+    <a href="create.php">Ajouter un étudiant</a><br><br>
     <table border="1">
         <thead>
             <tr>
