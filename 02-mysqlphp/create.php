@@ -1,5 +1,7 @@
 <?php
+ declare(strict_types=1);
  include 'database.php';
+ session_start();
 
 $message = '';
 
@@ -16,6 +18,7 @@ if(isset($_POST['soumettre'])){
             ':prenom' => $prenom,
             ':email' => $email
         ]);
+        $_SESSION['message'] = "Création du nouvel étudiant réussie !";
         header("Location: index.php");
         exit();
     } else {
