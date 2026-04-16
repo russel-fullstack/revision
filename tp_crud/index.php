@@ -26,7 +26,7 @@ $students = $req -> fetchAll();
         <a href="index.php">Actualiser</a>
         <input type="text" name="search" placeholder="Entrer le nom de l'étudiant ou son email">
         <button class="search">Rechercher</button>
-    </form>
+    </form><br>
     <table border="1">
     <thead>
         <tr>
