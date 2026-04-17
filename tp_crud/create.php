@@ -5,7 +5,7 @@ include 'database.php';
 
 session_start();
 
-$error ='';
+$message = '';
 
 if(isset($_POST['soumettre'])){
     $nom = htmlspecialchars($_POST['nom']);
@@ -14,37 +14,37 @@ if(isset($_POST['soumettre'])){
     $adresse = htmlspecialchars($_POST['adresse']);
     $phone = htmlspecialchars($_POST['phone']);
     $date = htmlspecialchars($_POST['date']);
-    // $niveau = $_POST['etude'];
+    $niveau = $_POST['niveau'];
     $interet = htmlspecialchars($_POST['text']);
     $photo = $_POST['photo'];
     $document = $_POST['document'];
-    $genre = $_POST['genre'];
-    $langue = $_POST['langue'];
+    $genre = $_POST['genre'] ?? '';
+    $langue = $_POST['langue'] ?? '';
 
     if(!empty($nom) || !empty($prenom) || !empty($mail) || !empty($adresse) || !empty($phone) || !empty($date) || !empty($genre) || !empty($langue)){
         $sql = 'INSERT INTO students (nom, prenom, mail, adresse, telephone, date_naissance, genre, langue, niveau_etude, interets, photo, document)
         VALUES(:nom, :prenom, :mail, :adresse, :telephone, :date_naissance, :genre, :langue, :niveau_etude, :interets, :photo, :document)';
         $req = $pdo -> prepare($sql);
         $req -> execute([
-            ':nom' => $nom,
-            ':prenom' => $prenom,
-            ':mail' => $mail,
-            ':adresse' => $adresse,
-            ':telephone' => $phone,
-            ':date_naissance' => $date,
-            ':genre' => $genre,
-            ':langue' => $langue,
-            // ':niveau_etude' => $niveau,
-            ':interets' => $interet,
-            ';photo' => $photo,
-            ':document' => $document
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'mail' => $mail,
+            'adresse' => $adresse,
+            'telephone' => $phone,
+            'date_naissance' => $date,
+            'genre' => $genre,
+            'langue' => $langue,
+            'niveau_etude' => $niveau,
+            'interets' => $interet,
+            'photo' => $photo,
+            'document' => $document
 
         ]);
-        //  $_SESSION['error'] = "Création du nouvel étudiant réussie !";
+        $_SESSION['message'] = "Création du nouvel étudiant réussie !";
         header("Location: index.php");
         exit();
     } else {
-        $error = "<p style='color: red;'> Veuillez remplir tous les champs</p>";
+        $message = "<p style='color: red;'> Veuillez remplir tous les champs</p>";
     }
 }
 
@@ -60,6 +60,9 @@ if(isset($_POST['soumettre'])){
 </head>
 <body>
     <h1>Créer un nouveau Étudiant</h1>
+    <?php if(!empty($message)) : ?>
+        <?= $message ?>
+    <?php endif; ?>
     <form action="" method="POST">
     <label for="name">Nom</label><br>
     <input type="text" name="nom" id="name" placeholder="Entrez votre nom"><br><br>
@@ -79,17 +82,21 @@ if(isset($_POST['soumettre'])){
     <input type="radio" name="genre" id="genre1" value="Féminin">
     <label for="genre1">feminin</label><br>
     <p>Langues préférées</p>
-    <input type="checkbox" name="langue" id="french">
+    <input type="checkbox" name="langue" id="french" value="français">
     <label for="french">Français</label>
-    <input type="checkbox" name="langue" id="english">
+    <input type="checkbox" name="langue" id="english" value="anglais">
     <label for="english">Anglais</label>
-    <input type="checkbox" name="langue" id="espagnol">
+    <input type="checkbox" name="langue" id="espagnol" value="espagnol">
     <label for="espagnol">Espagnol</label><br><br>
 
     <label for="etude">Niveau d'études</label>
     <select name="niveau" id="etude">
         <option value="">Sélectionner votre niveau d'étude</option>
-        <option value="">licence professionnelle</option>
+        <option value="licence professionnelle">licence professionnelle</option>
+        <option value="Master 2">Master 2</option>
+        <option value="Master 1">Master 1</option>
+        <option value="BTS">BTS</option>
+        <option value="DQP">DQP</option>
     </select><br><br>
     <label for="text">Vos intérêts</label><br>
     <textarea name="text" id="text" placeholder="vos intérêts"></textarea><br><br>
