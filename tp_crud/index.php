@@ -65,8 +65,8 @@ $students = $req -> fetchAll();
                 <td><?= htmlspecialchars($student['document'])?></td>
                 <td><?= htmlspecialchars($student['created_at'])?></td>
                 <td>
-                    <a href="update.php">Modifier</a>
-                    <a href="delete.php">supprimer</a>
+                    <a href="update.php?id=<?= $student['id'] ?>">Modifier</a>
+                    <a href="delete.php?id=<?= $student['id'] ?>" onclick=" return confirm('Voulez-vous vraiment supprimer cet étudiant ?')">supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>

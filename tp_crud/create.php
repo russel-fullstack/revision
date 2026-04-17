@@ -26,18 +26,18 @@ if(isset($_POST['soumettre'])){
         VALUES(:nom, :prenom, :mail, :adresse, :telephone, :date_naissance, :genre, :langue, :niveau_etude, :interets, :photo, :document)';
         $req = $pdo -> prepare($sql);
         $req -> execute([
-            'nom' => $nom,
-            'prenom' => $prenom,
-            'mail' => $mail,
-            'adresse' => $adresse,
-            'telephone' => $phone,
-            'date_naissance' => $date,
-            'genre' => $genre,
-            'langue' => $langue,
-            'niveau_etude' => $niveau,
-            'interets' => $interet,
-            'photo' => $photo,
-            'document' => $document
+            ':nom' => $nom,
+            ':prenom' => $prenom,
+            ':mail' => $mail,
+            ':adresse' => $adresse,
+            ':telephone' => $phone,
+            ':date_naissance' => $date,
+            ':genre' => $genre,
+            ':langue' => $langue,
+            ':niveau_etude' => $niveau,
+            ':interets' => $interet,
+            ':photo' => $photo,
+            ':document' => $document
 
         ]);
         $_SESSION['message'] = "Création du nouvel étudiant réussie !";
