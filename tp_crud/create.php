@@ -40,7 +40,6 @@ if(isset($_POST['soumettre'])){
             ':document' => $document
 
         ]);
-        $_SESSION['message'] = "Création du nouvel étudiant réussie !";
         header("Location: index.php");
         exit();
     } else {

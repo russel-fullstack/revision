@@ -58,17 +58,17 @@ if (isset($_POST["modifier"])) {
         
         <div>
             <label>Nom :</label><br>
-            <input type="text" name="nom" value="<?= htmlspecialchars($etudiant['nom']) ?>">
+            <input type="text" name="nom" value="<?= htmlspecialchars($etudiant['nom'] ?? '') ?>">
         </div>
         <br>
         <div>
             <label>Prénom :</label><br>
-            <input type="text" name="prenom" value="<?= htmlspecialchars($etudiant['prenom']) ?>">
+            <input type="text" name="prenom" value="<?= htmlspecialchars($etudiant['prenom'] ?? '') ?>">
         </div>
         <br>
         <div>
             <label>Email :</label><br>
-            <input type="email" name="email" value="<?= htmlspecialchars($etudiant['email']) ?>">
+            <input type="email" name="email" value="<?= htmlspecialchars($etudiant['email'] ?? '') ?>">
         </div>
         <br>
         <button type="submit" name="modifier">Enregistrer les modifications</button>
